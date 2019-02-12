@@ -1,0 +1,49 @@
+.el-header {
+  background-color: #409EFF;
+  color: #fff;
+  line-height: 80px;
+}
+
+.el-aside {
+  background-color: #eef1f6;
+  color: #333;
+  line-height: 200px;
+}
+
+.el-main {
+  background-color: #ffffff;
+  color: #333;
+}
+
+.el-menu {
+  background-color: #eef1f6;
+}
+
+.el-menu--horizontal.el-menu--dark .el-submenu .el-menu-item:hover,
+.el-menu--horizontal.el-menu--dark .el-submenu .el-submenu-title:hover,
+.el-menu-item:hover {
+  background-color: #d1dbe5;
+}
+
+.el-submenu__title:hover {
+  background-color: #d1dbe5;
+}
+
+.el-pagination {
+  text-align: center;
+  padding: 20px 0 0;
+}
+
+.el-menu-item:focus,
+.el-menu-item:hover {
+  outline: 0;
+  background-color: #d1dbe5;
+}
+
+.el-table thead {
+  color: #555;
+}
+
+.el-table th {
+  background-color: #f7f7f7;
+}
