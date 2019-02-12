@@ -3,12 +3,7 @@
 <div class="demetable" v-loading="listLoading" element-loading-text="加载中...">
   <div class="tools">
     <el-row>
-      <el-button size="small">默认按钮</el-button>
-      <el-button type="primary" size="small">主要按钮</el-button>
-      <el-button type="success" size="small">成功按钮</el-button>
-      <el-button type="info" size="small">信息按钮</el-button>
-      <el-button type="warning" size="small">警告按钮</el-button>
-      <el-button type="danger" size="small">危险按钮</el-button>
+      <el-button type="primary" size="small" @click="dialogFormVisible = true">新 增</el-button>
     </el-row>
   </div>
   <el-table ref="multipleTable" :data="tableData" border tooltip-effect="dark" style="width: 100%" @selection-change="handleSelectionChange">
@@ -24,6 +19,23 @@
   </el-table>
   <el-pagination background layout="prev, pager, next" :total="1000">
   </el-pagination>
+
+  <el-dialog title="新增" width="30%" :close-on-click-modal="false" :visible.sync="dialogFormVisible">
+    <el-form :model="form">
+      <el-form-item label="活动名称" :label-width="formLabelWidth">
+        <el-input v-model="form.name" autocomplete="off"></el-input>
+      </el-form-item>
+      <el-form-item label="活动区域" :label-width="formLabelWidth">
+        <el-select v-model="form.region" placeholder="请选择活动区域">
+          <el-option label="区域一" value="shanghai"></el-option>
+          <el-option label="区域二" value="beijing"></el-option>
+        </el-select>
+      </el-form-item>
+    </el-form>
+    <div slot="footer" class="dialog-footer">
+      <el-button type="primary" @click="handleClose">保 存</el-button>
+    </div>
+  </el-dialog>
 </div>
 </template>
 
@@ -47,7 +59,13 @@ export default {
     return {
       tableData: [],
       listLoading: false,
-      multipleSelection: []
+      multipleSelection: [],
+      dialogFormVisible: false,
+      form: {
+        name: '',
+        region: ''
+      },
+      formLabelWidth: '80px'
     }
   },
   created() {
@@ -57,30 +75,30 @@ export default {
     fetchData() {
       //this.listLoading = true
       const that = this
-      setTimeout(function() {
-        that.tableData = [{
-            date: '2016-05-02',
-            name: '王小虎',
-            address: '上海市普陀区金沙江路 1518 弄'
-          },
-          {
-            date: '2016-05-04',
-            name: '王小虎',
-            address: '上海市普陀区金沙江路 1517 弄'
-          },
-          {
-            date: '2016-05-01',
-            name: '王小虎',
-            address: '上海市普陀区金沙江路 1519 弄'
-          },
-          {
-            date: '2016-05-03',
-            name: '王小虎',
-            address: '上海市普陀区金沙江路 1516 弄'
-          }
-        ]
-        that.listLoading = false
-      }, 500);
+      //setTimeout(function() {
+      that.tableData = [{
+          date: '2016-05-02',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1518 弄'
+        },
+        {
+          date: '2016-05-04',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1517 弄'
+        },
+        {
+          date: '2016-05-01',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1519 弄'
+        },
+        {
+          date: '2016-05-03',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1516 弄'
+        }
+      ]
+      that.listLoading = false
+      //}, 500);
       /*getList(this.listQuery).then(response => {
           this.list = response.data.items
           this.listLoading = false
@@ -97,6 +115,14 @@ export default {
     },
     handleSelectionChange(val) {
       this.multipleSelection = val;
+    },
+    handleClose(done) {
+      this.$message({
+        message: '恭喜你，这是一条成功消息',
+        type: 'success',
+        duration: 800
+      });
+      this.dialogFormVisible = false
     }
   }
 }

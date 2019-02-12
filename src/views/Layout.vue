@@ -4,9 +4,11 @@
 </style>
 
 <template>
-<el-container>
-  <el-header height="80px">XXXX管理系统</el-header>
-  <el-container :style="elContainer">
+<el-container :style="elContainer">
+  <el-header height="80px">
+    <h2>LELement-管理系统</h2>
+  </el-header>
+  <el-container>
     <el-aside width="220px">
       <nav-menu />
     </el-aside>
@@ -41,7 +43,7 @@ export default {
     const that = this;
     //console.log(that.$children);
     var h = document.documentElement.clientHeight || document.body.clientHeight;
-    that.elContainer.height = (h - 80) + 'px';
+    that.elContainer.height = h + 'px';
     //console.log(h)
   },
   methods: {
