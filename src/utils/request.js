@@ -16,21 +16,26 @@ instance.interceptors.request.use(function(config) {
   return config;
 }, function(error) {
   // 对请求错误做些什么
-  console.log(error); // for debug
+  //console.log(error); // for debug
+  Message({
+    message: error.message,
+    type: 'error',
+    duration: 3 * 1000
+  })
   return Promise.reject(error);
 });
 
 // response 响应拦截器
 instance.interceptors.response.use(function(response) {
+  //console.log(response)
   const res = response.data;
   return res;
 }, function(error) {
   // 对响应错误做点什么
-  console.log(error); // for debug
   Message({
     message: error.message,
     type: 'error',
-    duration: 5 * 1000
+    duration: 3 * 1000
   })
   return Promise.reject(error);
 });

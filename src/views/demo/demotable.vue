@@ -6,18 +6,19 @@
       <el-button type="primary" size="small" @click="dialogFormVisible = true">新 增</el-button>
     </el-row>
   </div>
-  <el-table ref="multipleTable" :data="tableData" border tooltip-effect="dark" style="width: 100%" @selection-change="handleSelectionChange">
+  <el-table ref="multipleTable" size="medium" :data="tableData" border tooltip-effect="dark" style="width: 100%" @selection-change="handleSelectionChange">
     <el-table-column type="selection" width="55">
     </el-table-column>
-    <el-table-column label="日期" width="120">
-      <template slot-scope="scope">{{ scope.row.date }}</template>
+    <el-table-column prop="user_name" label="姓名" width="150">
     </el-table-column>
-    <el-table-column prop="name" label="姓名" width="120">
+    <el-table-column prop="ipaddr" label="IP地址" width="150">
     </el-table-column>
-    <el-table-column prop="address" label="地址" show-overflow-tooltip>
+    <el-table-column prop="createtime" label="时间" width="150">
+    </el-table-column>
+    <el-table-column prop="remark" label="信息" show-overflow-tooltip>
     </el-table-column>
   </el-table>
-  <el-pagination background layout="prev, pager, next" :total="1000">
+  <el-pagination background layout="total, prev, pager, next, jumper" @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="pageNumber" :page-sizes="pageSizes" :page-size="pageSize" :total="total">
   </el-pagination>
 
   <el-dialog title="新增" width="30%" :close-on-click-modal="false" :visible.sync="dialogFormVisible">
@@ -57,15 +58,21 @@ export default {
   name: 'demotable',
   data() {
     return {
-      tableData: [],
+      // 基础数据
+      total: 10,
+      pageSize: 10,
+      pageSizes: [10, 20, 30, 40],
+      pageNumber: 1,
       listLoading: false,
-      multipleSelection: [],
+      formLabelWidth: '80px',
       dialogFormVisible: false,
+      // 动态数据
+      tableData: [],
+      multipleSelection: [],
       form: {
         name: '',
         region: ''
-      },
-      formLabelWidth: '80px'
+      }
     }
   },
   created() {
@@ -73,36 +80,29 @@ export default {
   },
   methods: {
     fetchData() {
-      //this.listLoading = true
       const that = this
-      //setTimeout(function() {
-      that.tableData = [{
-          date: '2016-05-02',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        },
-        {
-          date: '2016-05-04',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1517 弄'
-        },
-        {
-          date: '2016-05-01',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1519 弄'
-        },
-        {
-          date: '2016-05-03',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1516 弄'
-        }
-      ]
-      that.listLoading = false
-      //}, 500);
-      /*getList(this.listQuery).then(response => {
-          this.list = response.data.items
-          this.listLoading = false
-      })*/
+      // 打开loading
+      this.listLoading = true
+      getList({
+        pageNumber: that.pageNumber,
+        pageSize: that.pageSize
+      }).then(data => {
+        that.tableData = []
+        let map = JSON.parse(data);
+        //console.log(map)
+        that.total = map.totalrecord
+        that.tableData = map.list
+        // 关闭loading
+        this.listLoading = false
+      })
+    },
+    handleSizeChange(pageSize) {
+      this.pageSize = pageSize
+      this.fetchData()
+    },
+    handleCurrentChange(val) {
+      this.pageNumber = val
+      this.fetchData()
     },
     toggleSelection(rows) {
       if (rows) {
