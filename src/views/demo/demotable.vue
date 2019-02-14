@@ -1,12 +1,12 @@
 
 <template>
-<div class="demetable" v-loading="listLoading" element-loading-text="加载中...">
+<div class="demetable">
   <div class="tools">
     <el-row>
       <el-button type="primary" size="small" @click="dialogFormVisible = true">新 增</el-button>
     </el-row>
   </div>
-  <el-table ref="multipleTable" size="medium" :data="tableData" border tooltip-effect="dark" style="width: 100%" @selection-change="handleSelectionChange">
+  <el-table ref="multipleTable" v-loading="listLoading" element-loading-text="加载中..." size="medium" :data="tableData" border tooltip-effect="dark" style="width: 100%" @selection-change="handleSelectionChange">
     <el-table-column type="selection" width="55">
     </el-table-column>
     <el-table-column prop="user_name" label="姓名" width="150">
@@ -40,12 +40,12 @@
 </div>
 </template>
 
-<style scope="scss">
+<style lang="scss">
 .tools {
-  margin-bottom: 10px;
-  text-align: right;
-  border-bottom: 1px solid #ebeef5;
-  padding-bottom: 10px;
+    margin-bottom: 10px;
+    text-align: right;
+    border-bottom: 1px solid #ebeef5;
+    padding-bottom: 10px;
 }
 </style>
 

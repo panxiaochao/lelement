@@ -38,6 +38,15 @@ const routesMap = [{
         title: 'DemoTable1',
         icon: 'table'
       }
+    }, {
+      path: 'form',
+      name: 'Form',
+      component: () =>
+        import('../views/demo/Form'),
+      meta: {
+        title: 'Form',
+        icon: ''
+      }
     }]
   }
 ];

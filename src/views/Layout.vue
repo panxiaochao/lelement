@@ -1,8 +1,3 @@
-<style lang="scss">
-@import "../styles/style";
-@import "../styles/custom/index";
-</style>
-
 <template>
 <el-container :style="elContainer">
   <el-header height="80px">

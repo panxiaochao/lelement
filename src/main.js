@@ -4,8 +4,13 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import ElementUI from 'element-ui'
-import 'normalize.css/normalize.css' // A modern alternative to CSS resets
+
+// A modern alternative to CSS resets
+import 'normalize.css/normalize.css'
 import 'element-ui/lib/theme-chalk/index.css'
+// custom
+import "./styles/style.scss";
+import "./styles/custom/index.scss";
 
 // Progress 进度条
 import NProgress from 'nprogress'

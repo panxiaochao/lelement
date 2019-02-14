@@ -73,11 +73,13 @@ module.exports = {
           limit: 10000,
           name: utils.assetsPath('fonts/[name].[hash:7].[ext]')
         }
-      },
-      {
-        test: /\.scss$/,
-        loaders: ["style", "css", "sass"]
       }
+      /*,
+            // 最新版不需要配置，不然在main.js中加入scss会报错
+            {
+              test: /\.scss$/,
+              loaders: ["style", "css", "sass"]
+            }*/
     ]
   },
   node: {

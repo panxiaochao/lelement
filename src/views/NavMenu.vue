@@ -15,7 +15,9 @@
       </router-link>
     </el-menu-item-group>
     <el-menu-item-group title="表单类型">
-      <el-menu-item index="1-3">选项3</el-menu-item>
+      <router-link to="/example/form">
+        <el-menu-item index="1-3">表单</el-menu-item>
+      </router-link>
     </el-menu-item-group>
     <el-menu-item-group title="分组3">
       <el-menu-item index="1-4">选项3</el-menu-item>
