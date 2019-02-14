@@ -6,7 +6,7 @@
 Modern browsers and Internet Explorer 10+.
 
 ## Version
-0.0.2
+[lelement-v0.02@lastest](https://github.com/panxiaochao/lelement/releases)
 
 ## Author
 Lypxc
