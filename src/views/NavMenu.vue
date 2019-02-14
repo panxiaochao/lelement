@@ -7,9 +7,9 @@
     </template>
     <el-menu-item-group>
       <template slot="title">表格类型</template>
-      <!-- <router-link to="/example/table">
+      <router-link to="/example/table">
         <el-menu-item index="1-1">table</el-menu-item>
-      </router-link> -->
+      </router-link>
       <router-link to="/example/table1">
         <el-menu-item index="1-2">table1</el-menu-item>
       </router-link>
