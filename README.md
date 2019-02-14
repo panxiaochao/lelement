@@ -6,7 +6,13 @@
 Modern browsers and Internet Explorer 10+.
 
 ## Version
-0.0.1
+0.0.2
+
+## Author
+Lypxc
+
+## Eamil
+panxiaochao602@qq.com
 
 ## Build Setup
 
